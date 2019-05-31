@@ -1,0 +1,88 @@
+<html>
+<p>NEURON hoc, mod and python files for the model:
+<a href="https://doi.org/10.1371/journal.pcbi.1006975">
+Sergio Solinas, Elke Edelmann, Volkmar Leßmann, Michele Migliore 2018
+"A kinetic model for synaptic transmission and Brain-Derived
+Neurotrophic Factor mediated spike timing-dependent plasticity in
+hippocampal CA1 neurons"
+</a>
+</p>
+<p>The model shows how the back-propagating action potentials in the
+oblique dendrites of CA1 neurons collide at the spines with a locally
+elicited EPSP to trigger the release of a retrograde messenger or
+Brain-Derived Neurotrophic Factor inducing the late expression of
+spike timing-dependent plasticity.
+</p>
+<p>This model should run in python version 2.7 and 3.7.
+</p>
+<p>Dependencies: hdf5 and h5py<br/>
+How to install: follow instructions on<br/>
+<a href="http://docs.h5py.org/en/stable/build.html">http://docs.h5py.org/en/stable/build.html</a>
+</p>
+<p>Make sure you compile the mod files in mod_files before running with mknrndll
+(mswin and mac os x) or nrnivmodl (unix/linux).  If you need more help
+running the model on your platform please consult:
+<a href="https://senselab.med.yale.edu/ModelDB/NEURON_DwnldGuide.cshtml">https://senselab.med.yale.edu/ModelDB/NEURON_DwnldGuide.cshtml</a>
+</p>
+<p>In order to reproduce Fig.3A and 3B of the paper run:
+python -i run_GUI.py<br/>
+or<br/>
+nrngui -python run_GUI.py
+</p>
+<p>From the GUI press the "LTP11" botton, then the "Set to run short sim"
+botton, and then hit the "Init&amp;Run" botton in the "RunControl" panel.
+</p>
+<p>
+  <img src="fig3A_3B.png" alt="Figure 3A,B">
+</p>
+<p>In order to reproduce Fig.3C and 3D of the paper run:
+python -i run_GUI.py<br/>
+or<br/>
+nrngui -python run_GUI.py
+</p>
+<p>From the GUI press the "LTP11" botton, then the "Set to run long sim"
+botton, and then hit the "Init&amp;Run" botton in the "RunControl" panel.
+The simulation should take about 4 hours on a 2.0Ghz cpu if
+the graphs are hidden (i.e. presse the HIDE botton on each window, to
+visualize them again use the scroll down menu Windows from the
+neuron_main_menu).
+</p>
+<p>In order to reproduce Fig.4A and 4B of the paper run:
+python -i run_GUI.py<br/>
+or<br/>
+nrngui -python run_GUI.py
+</p>
+<p>From the GUI press the "LTP14" botton, then the "Set to run short sim"
+botton, and then hit the "Init&amp;Run" botton in the "RunControl" panel.
+</p>
+<p><img src="fig4A_4B.png" alt="Figure 4A,B">
+</p>
+<p>In order to reproduce Fig.4C and 4D of the paper run:
+python -i run_GUI.py<br/>
+or<br/>
+nrngui -python run_GUI.py
+</p>
+<p>From the GUI press the "LTP14" botton, then the "Set to run long sim"
+botton, and then hit the "Init&amp;Run" botton in the "RunControl" panel.
+The simulation should take about 4 hours on a 2.0Ghz cpu if
+the graphs are hidden (i.e. presse the HIDE botton on each window, to
+visualize them again use the scroll down menu Windows from the
+neuron_main_menu).
+</p>
+<p>Under unix systems:<br/>
+to compile the mod files use the command 
+nrnivmodl mod_files/
+</p>
+<p>To run long simulations of multiple protocols in parallel use:
+Start_parallel.sh [num_cpus] [dest_dir]
+This requires the NEURON software to be compile for parallel simulations. 
+It runs without GUI, configuration in parameters.py.
+</p>
+<p>Questions on how to use this model<br/>
+should be directed to michele.migliore at pa.ibf.cnr.it
+Questions on how to modifiy or run this
+model should be addressed to smgsolinas at gmail.com
+</p>
+
+</body>
+</html>
