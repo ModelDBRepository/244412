@@ -150,7 +150,7 @@ class Spiny_branch():
         # self.spines[17].head.BDNF.theta_gAMPA = 0.11
         
         for s_i,s in enumerate(self.spines):
-            print("spine ", s_i, s.head.BDNF.theta_gAMPA)
+            print(("spine ", s_i, s.head.BDNF.theta_gAMPA))
             
     def plot_branch(self,
                     variable,

@@ -55,18 +55,18 @@ class cell(object):
 
             if check:
                 print('List of kept sections:')
-                print(cell.printnames())
-                print('Apical',apical_sl.printnames())
-                print('Basal',basal_sl.printnames())
-                print('Axon',axon_sl.printnames())
-                print('User',user5_sl.printnames())
+                print((cell.printnames()))
+                print(('Apical',apical_sl.printnames()))
+                print(('Basal',basal_sl.printnames()))
+                print(('Axon',axon_sl.printnames()))
+                print(('User',user5_sl.printnames()))
 
         special_sections = {
             'soma':self.soma,
             'branch_base':self.branch_base}
             
         if check:
-            print(self.branch_sl.printnames())
+            print((self.branch_sl.printnames()))
 
         # Put sections into a dictionary
         self.branch38 = {}
@@ -182,7 +182,7 @@ class cell(object):
             self.records['%s'%r['section']] = {
                 '%s_%g'%(r['variable'],r['location']):{
                     'unit':r['unit']}}
-            print(self.records)
+            print((self.records))
             local_rec = self.records['%s'%r['section']]['%s_%g'%(r['variable'],r['location'])]
              # self.records['%s_%g'%(r['variable'],r['location'])]
             if 'point_process' in list(r.keys()):
@@ -201,7 +201,7 @@ class cell(object):
         h.v_init = Vrest
         h.init()
         if check:
-            print("Balancing all currents to %g mV "%Vrest)
+            print(("Balancing all currents to %g mV "%Vrest))
         h.finitialize(Vrest)
         for sec in self.branch_sl:
             for seg in sec:
@@ -215,7 +215,7 @@ class cell(object):
                 if h.ismembrane("ca_ion"):
                     seg.e_pas = seg.e_pas + seg.ica/seg.g_pas
                 if check:
-                    print(e_pas, seg.e_pas)
+                    print((e_pas, seg.e_pas))
                     # print (seg.ina+seg.ik+seg.ica+seg.i_hd)/seg.g_pas + Vrest
                     
     def record(self, to_record):
@@ -253,8 +253,8 @@ class cell(object):
             g = store.create_group(self.Name)
 
         # Loop over sections
-        for r_n,r in self.records.items():
-            print(r_n,list(r.keys()))
+        for r_n,r in list(self.records.items()):
+            print((r_n,list(r.keys())))
             r_g = g.create_group(r_n)
             # Write section time
             if r_n is 'time':
@@ -277,7 +277,7 @@ class cell(object):
                                              #chunks=(100,))
             else:
                # Loop over variables in sections
-                for v_n,v in r.items():
+                for v_n,v in list(r.items()):
                     v_g = r_g.create_group(v_n)
                     v_u = v_g.create_dataset('Unit', data = np.string_(v['unit']))
                     if write_datasets:

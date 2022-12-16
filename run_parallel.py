@@ -13,7 +13,7 @@ def superrun(xxx_todo_changeme):
     (run_index,delta_t, dep_dur, hyp_dur, n_BPAP, conf_n, activate_LTP,nstim,blk_RMBLK) = xxx_todo_changeme
     global protocol, p , cell, rank
     if p['check']:
-        print('Started simulation %s run %g on CPU %g'%(conf_n, run_index,rank))
+        print(('Started simulation %s run %g on CPU %g'%(conf_n, run_index,rank)))
 
     # print protocol.stimulators['IC_dep'][0][0].delay,protocol.stimulators['IC_dep'][0][0].amp
 
@@ -39,7 +39,7 @@ def superrun(xxx_todo_changeme):
     if activate_LTP:
         protocol.stim.number = nstim
         if p['check']:
-            print('Stimulation is %s for %g times.'%(conf_n,nstim)) 
+            print(('Stimulation is %s for %g times.'%(conf_n,nstim))) 
     else:
         protocol.stim.number = 0
 
@@ -52,16 +52,16 @@ def superrun(xxx_todo_changeme):
 
         
     if p['check']:
-        print("Running for delta_t = %g"%delta_t)
+        print(("Running for delta_t = %g"%delta_t))
     protocol.stim.start = p['time_start_induction_stimuli'] + delta_t # ms
     if p['check']:
-        print('Initializing on run %g on CPU %g'%(run_index,rank))
+        print(('Initializing on run %g on CPU %g'%(run_index,rank)))
     if p['override_tstop'] is not None:
         h.tstop = p['override_tstop']
     else:
         h.tstop = protocol.p['tstop']#p['time_on_initialization']+p['time_to_begin_induction'] + 1000
     if p['check']:
-        print('Running for %g ms'%h.tstop)
+        print(('Running for %g ms'%h.tstop))
 
     # for seg in dend:
     #     mec = getattr(seg,'na3')
@@ -83,12 +83,12 @@ def superrun(xxx_todo_changeme):
     if h.tstop > 1e3:
         while h.t < h.tstop:
             h.continuerun(h.t+5e3)
-            print(h.t, end=' ')
+            print((h.t))
             sys.stdout.flush()
     else:
         h.run()
     for s in cell.spines:
-        print(s.name, s.head.AMPA.Pmax, s.head.AMPA.g_factor, s.head.AMPA.glut_factor, 'lowindex', cell.MCell_Ran4_lowindex, 'cell highindex', cell.MCell_Ran4_highindex, 'spine highindex', s.highindex, 'delta t', delta_t)
+        print((s.name, s.head.AMPA.Pmax, s.head.AMPA.g_factor, s.head.AMPA.glut_factor, 'lowindex', cell.MCell_Ran4_lowindex, 'cell highindex', cell.MCell_Ran4_highindex, 'spine highindex', s.highindex, 'delta t', delta_t))
 
     store = h5.File(p['data_file']+'_%g.hdf5'%run_index, 'w')
     # print "Opened data file on cpu %g"%rank
@@ -115,7 +115,7 @@ def superrun(xxx_todo_changeme):
 
     if p['check']:
         for spine_index,spine in enumerate(cell.spines):
-            print(conf_n, spine.name, 'delta_t_%g'%delta_t, list(run_iteration.keys()))
+            print((conf_n, spine.name, 'delta_t_%g'%delta_t, list(run_iteration.keys())))
     for spine_index,spine in enumerate(cell.spines):
         # Single spine group
         # if spine.name in run_iteration.keys():
@@ -149,7 +149,7 @@ protocol = stim_protocol(cell,p, rank=rank)
 
 
 pc.runworker()
-print('Starting %g'%rank)
+print(('Starting %g'%rank))
 
 sim_list = []
 if rank == 0:
@@ -161,7 +161,7 @@ if rank == 0:
 
     # nnodes = world.size
     run_index = 0
-    for conf_n,conf in p['protocols'].items():
+    for conf_n,conf in list(p['protocols'].items()):
 
         for delta_t in p['time_delta']:
 
@@ -183,7 +183,7 @@ if rank == 0:
             pc.submit(superrun, args)
 
 while pc.working():
-    print(pc.pyret())
+    print((pc.pyret()))
 pc.done()
 
 

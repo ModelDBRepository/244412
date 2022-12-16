@@ -7,7 +7,7 @@ def get_cell_list():
     return sl
 
 def get_section_list(cell):
-    print("Selected section where to start for h.wholetree() %s"%cell.name())
+    print(("Selected section where to start for h.wholetree() %s"%cell.name()))
 
     # Access parent section
     cell.push()
@@ -20,12 +20,12 @@ def get_section_list(cell):
 def geom_nseg(sl, check = False):
     if check:
         for sec in sl:
-            print(sec.nseg)
+            print((sec.nseg))
     for sec in sl:
         sec.nseg = int((sec.L/(0.1*h.lambda_f(100))+.9)/2)*2 + 1
     if check:
         for sec in sl:
-            print(sec.nseg)
+            print((sec.nseg))
 
 def dump_structure_in_dict_for_hoc(sl ,filename,sec_list,mec_list):
     sec_dict = {}
