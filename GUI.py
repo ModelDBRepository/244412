@@ -139,7 +139,7 @@ class Panels(object):
                 
     def set_stim_start(self):
         self.stim.start = self.start_base - self.delta_t
-        print("Delta t =",self.stim.start)
+        print(("Delta t =",self.stim.start))
         
     def set_pulse(self):
         # Set curr inj duration
@@ -165,7 +165,7 @@ class Panels(object):
             nc.delay = delay
             nc_nmda.delay = delay
             
-        print("new dur =", self.dep[0][0].dur)
+        print(("new dur =", self.dep[0][0].dur))
 
     def set_cell(self):
         command = 'forall '
@@ -182,11 +182,11 @@ class Panels(object):
                     seg.gkabar_kap = self.KMULTP*(1+xdist/100)
 
     def set_view(self):
-        for plot in self.plots.values():
+        for plot in list(self.plots.values()):
             plot.exec_menu("View = plot")
 
     def erase(self):
-        for plot in self.plots.values():
+        for plot in list(self.plots.values()):
             plot.exec_menu("Erase")
 
 

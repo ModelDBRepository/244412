@@ -29,7 +29,7 @@ class stim_protocol():
         self.test_pre.number = int(self.p['time_on_initialization'] / self.test_pre.interval) # 200
         self.test_pre.noise = 0
         if p['check']:
-            print('Begin sim',start_next)
+            print(('Begin sim',start_next))
         
         self.nc_test_pre = []
         self.nc_test_pre_nmda = []
@@ -41,7 +41,7 @@ class stim_protocol():
 
         start_next += self.p['time_on_initialization']
         if p['check']:
-            print('End PRE',start_next)
+            print(('End PRE',start_next))
         
 
         # Induction protocol
@@ -53,7 +53,7 @@ class stim_protocol():
         self.stim.interval = 1e3/self.p['induction_freq'] # ms  0.5 Hz = 2 s
         self.stim.noise = 0
         if p['check']:
-            print('Begin induction',start_next)
+            print(('Begin induction',start_next))
         
 
         self.nc_stim = []
@@ -70,7 +70,7 @@ class stim_protocol():
         self.test_during = h.NetStim()
         self.test_during.start = start_next + 1e3/self.p['induction_freq']/2 # ms
         if p['check']:
-            print("DURING",self.test_during.start, 1e3/self.p['induction_freq']/2)
+            print(("DURING",self.test_during.start, 1e3/self.p['induction_freq']/2))
         self.test_during.interval = 1e3/self.p['test_freq'] # ms -> 20 sec
         self.test_during.number = int(self.stim.number*self.stim.interval / self.test_during.interval)
         self.test_during.noise = 0
@@ -117,7 +117,7 @@ class stim_protocol():
         start_next += self.time_of_induction
         self.time_end_induction = start_next
         if p['check']:
-            print('End induction',start_next)
+            print(('End induction',start_next))
 
         # Post induction EPSP test during expression
         self.test_post = h.NetStim()
@@ -152,6 +152,6 @@ class stim_protocol():
         self.p['tstop'] = start_next
         h.init()
         if p['check']:
-            print('Setup finished on cpu %g tstop %g'%(rank,h.tstop))
+            print(('Setup finished on cpu %g tstop %g'%(rank,h.tstop)))
 
 

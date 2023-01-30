@@ -616,7 +616,7 @@ protocols = {
     #     'color':'k'}
           }
 
-print(list(protocols.keys()))
+print((list(protocols.keys())))
     
 # protocols = {'1EPSP':{
 #     'BPAP_dep_stimulus_duration':0, # ms        

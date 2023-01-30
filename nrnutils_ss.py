@@ -145,7 +145,7 @@ class Section(nrn.Section):
         if 'mech' in type_mec:
             if type(variable) == type([]):
                 for var in variable:
-                    print(self.name(), '%s(%g)' % (var, location))
+                    print((self.name(), '%s(%g)' % (var, location)))
                     self.push()
                     if h.ismembrane(var):
                         spine_area = h.area(0.5)
@@ -186,7 +186,7 @@ class Section(nrn.Section):
         else:
             g = store.create_group(self.Name)
 
-        for r_n,r in self.records.items():
+        for r_n,r in list(self.records.items()):
             r_g = g.create_group(r_n)
             r_u = r_g.create_dataset('Unit', data = np.string_(r['unit']))
             if write_datasets:
@@ -213,11 +213,11 @@ class Section(nrn.Section):
         else:
             dgroup = section_group[self.Name]
 
-        print(list(dgroup.keys()))
-        for r_n,r in self.records.items():
-            print(dgroup[r_n]['Data'])
+        print((list(dgroup.keys())))
+        for r_n,r in list(self.records.items()):
+            print((dgroup[r_n]['Data']))
             data = np.array(r['val'])
-            print(data.shape)
+            print((data.shape))
             # dgroup[r_n]['Data'][:] = 
             # dgroup[r_n]['Data'].resize((500,))
             # print dgroup[r_n]['Data']
